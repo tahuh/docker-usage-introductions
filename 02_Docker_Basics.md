@@ -30,3 +30,12 @@ WSL2를 설치하는 방법은 다음의 [링크](https://docs.microsoft.com/en-
 
 이제 우리는 docker container를 만들기 위해 `Dockerfile`이라고 부르는 단 한장의 파일을 만들 것이다.
 
+다음의 내용을 텍스트 에디터로 기록하고 어디 경로에 저장해 보자
+
+```Dockerfile
+FROM ubuntu:16.04 # We load base OS image as ubuntu-1604
+
+RUN echo "Hello docker file" # Docker file will say hello
+```
+
+사실 위의 docker파일은 아무것도 하지 않고 오로지 build할 때 `Hello docker file`만 출력하게 하는 예제이다.
