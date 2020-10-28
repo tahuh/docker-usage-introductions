@@ -90,7 +90,7 @@ Bioinformatics의 가장 처음 시작은 보통 sequencing read를 trimming하�
 
 다시말해 **한번 만들면 어디에서든 쓸 수 있다**
 
-**추가로** 우리는 이제 <u>Cloud의 시대</u>에 접어 들었고 cloud에서 분석 및 서비스 하는 platform들이 `docker`를 기본적으로 지원한다. 대표적으로 Google의 Verily와 Broadinstitute이 합작한 [Terra](https://terra.bio/)가 있다.~(시대가 원한다 이말이야!)~
+**추가로** 우리는 이제 <u>Cloud의 시대</u>에 접어 들었고 cloud에서 분석 및 서비스 하는 platform들이 `docker`를 기본적으로 지원한다. 대표적으로 Google의 [Verily](https://verily.com/)와 [BroadInstitute](https://www.broadinstitute.org/)이 합작한 [Terra](https://terra.bio/)가 있다.~(시대가 원한다 이말이야!)~
 
 결론적으로 1) 귀찮은 설치 작업 줄이기 2) 분석의 재현성 확립 3) Cloud system에서의 효율적 운용 을 위해서 Docker system의 bioinformatics로의 도입은 정말 <u>필요</u>하다.
 
