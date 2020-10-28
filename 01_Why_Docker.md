@@ -78,3 +78,20 @@ Bioinformatics의 가장 처음 시작은 보통 sequencing read를 trimming하�
 + 버그 문제
   + 버그가 있는 부분이 fix가 되지 않고 release되는 software들이 아주 많다. 이러한 버그가 분석에 영향을 주게 된다.
 
+언급된 상황들을 해결하기 위해서 `conda` + `snakemake` 의 조합으로 pipeline이 구성되지만 이 모든 것은 하나의 컴퓨터에서 이루어진다.
+
+### 그럼 conda + snakemake를 가지고 하면 되는걸 왜 굳이 Docker를 써야하는가?
+
+`conda` + `snakemake` 환경에서 내가 생각하는 단점은 바로 **서버를 이전하면 처음부터 다시 해야한다** 라는 것이다.
+
+`conda` + `snakemake` 환경은 결국 한 컴퓨터에 OS를 설치한 후에 `conda`를 설치하고 사용했던 환경을 다시 만드는 과정이 필요하다.
+
+**그런데** `docker`는 이미 그 자체가 OS이자 컴퓨터 하나이기 때문에 Dockerfile으로 기록된 형식, `tar` 파일로 저장된 image, 또는 공개된 image 만 있으면 마치 우리가 windows를 설치할 때 USB를 꼽고 설치하듯이 아무데서나 설치해서 사용할 수 있다.
+
+다시말해 **한번 만들면 어디에서든 쓸 수 있다**
+
+**추가로** 우리는 이제 <u>Cloud의 시대</u>에 접어 들었고 cloud에서 분석 및 서비스 하는 platform들이 `docker`를 기본적으로 지원한다. 대표적으로 Google의 Verily와 Broadinstitute이 합작한 [Terra](https://terra.bio/)가 있다.~(시대가 원한다 이말이야!)~
+
+결론적으로 1) 귀찮은 설치 작업 줄이기 2) 분석의 재현성 확립 3) Cloud system에서의 효율적 운용 을 위해서 Docker system의 bioinformatics로의 도입은 정말 <u>필요</u>하다.
+
+다음부터는 docker의 설치 및 간단한 build 작업 과 실전에서 docker를 어떻게 쓰는지 사용법 위주로 진행해 보고자 한다
