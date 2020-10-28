@@ -95,3 +95,5 @@ Bioinformatics의 가장 처음 시작은 보통 sequencing read를 trimming하�
 결론적으로 1) 귀찮은 설치 작업 줄이기 2) 분석의 재현성 확립 3) Cloud system에서의 효율적 운용 을 위해서 Docker system의 bioinformatics로의 도입은 정말 <u>필요</u>하다.
 
 다음부터는 docker의 설치 및 간단한 build 작업 과 실전에서 docker를 어떻게 쓰는지 사용법 위주로 진행해 보고자 한다
+
+NOTE. 이 [링크](https://github.com/tahuh/biserver)를 따라가면 내 개인적으로 만들고 있는 bioinformatics server를 위한 dockerfile이 있다
