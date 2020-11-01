@@ -39,3 +39,59 @@ RUN echo "Hello docker file" # Docker file will say hello
 ```
 
 사실 위의 docker파일은 아무것도 하지 않고 오로지 build할 때 `Hello docker file`만 출력하게 하는 예제이다.
+
+## 3. Bioinformatics에서 사용하는 software를 docker 구동하는 만들기 - BWA docker
+
+이제 실제로 우리가 써먹을 도커를 만들어보기로 한다.
+
+제일 먼저 bioinformatics를 할때 많이 쓰는 aligner인 BWA를 구동하는 docker container를 만들어 보자.
+
+이를 위해 먼저 우리는 아래와 같은 Dockerfile을 만들 것이다
+
+실습에 앞서 BWA의 repository를 clone해 두자.
+
+```bash
+git clone https://github.com/lh3/bwa
+```
+
+```Dockerfile
+FROM ubuntu:16.04
+
+MAINTAINER Thomas Sunghoon Heo
+
+# Set-up environment required for installtion steps
+ENV PATH /usr/local/bin:$PATH
+ENV LANG C.UTF-8
+
+# Set-up work directory
+WORKDIR /bwawd
+# Now copy all the things in here to bwawd
+COPY . /bwawd
+# Now update APT
+RUN apt-get update
+RUN apt-get install -y software-properties-common
+RUN apt-get update
+
+# We need some tools to compile BWA
+# including external libraries
+
+RUN DEBIAN_FRONTEND=noninteractive; \
+apt install -y build-essential \
+autoconf automake perl \
+zlib1g-dev libbz2-dev \
+liblzma-dev libcurl4-gnutls-dev \
+libssl-dev libncurses5-dev git
+
+# Installation following github instruction
+
+RUN cd /bwawd/bwa && make
+RUN ln -s /bwawd/bwa/bwa /usr/local/bin/bwa 
+```
+
+위의 도커 파일에 사용되는 `ENV`, `WORKDIR`, `COPY`, `RUN` 등은 Docker의 공식 홈페이지에서 사용법을 찾아보면 좋지만 같단히 적으면 아래와 같다
+
+- ENV : ENVironment setting으로 환경변수 설정이다
+- WORKDIR : 현재 Docker가 작업할 working directory로 파일들을 local host file을 copy하거나 다른 데이터 파일을 copy 할 때 지정해서 사용한다
+- COPY : 보이는대로 host의 데이터를 복사하는 명령어 이다
+- RUN : 뒤에 나오는 명령어를 실행한다.
+
