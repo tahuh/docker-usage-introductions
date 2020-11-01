@@ -95,3 +95,37 @@ RUN ln -s /bwawd/bwa/bwa /usr/local/bin/bwa
 - COPY : 보이는대로 host의 데이터를 복사하는 명령어 이다
 - RUN : 뒤에 나오는 명령어를 실행한다.
 
+위의 Dockerfile을 가지고 아래의 명령어를 입력하면 docker container가 만들어 진다
+
+주의 사항은 맨 마지막에 있는 `.`을 빼먹지 말자
+
+`docker build -t container/bwa .`
+
+이제 docker container를 구동해 보자
+
+`$ docker run --rm -ti container/bwa bwa`
+
+그려면 이제 docker의 결과로 우리는 bwa를 구동한 것이된다.
+
+이 뒤에 평소처럼 `bwa`의 옵션을 넣고 돌리면 된다
+
+여기에 우리는 docker의 `tag`라는 특성을 이용해서 software의 버전을 지정 할 수 있다.
+
+software의 버전에 따라 분석의 결과치가 달라질 수 있기 때문에 이런 버전을 명시하는 것이 중요하다.
+
+이를 위해 아까의 Dockerfile을 이용하는데 내용은 바꿀 필요가 없다.
+
+단지 아래의 `-t` 옵션을 잘 이용해 보면 된다
+
+명령어는 다음과 같다 (Github의 bwa의 버전이 0.7.17 이므로 이걸 쓰자)
+
+`docker build -t container/bwa:v0.7.17 .`
+
+이렇게 하면 나중에 Cloud에서 docker기반으로 구현할 때도 같은 version을 이용할 수 있다.
+
+또 이 방법을 통해 버전이 바뀔 때 버전에 해당하는 docker container들 각각을 얻을 수 있다.
+
+## 마치며...
+오늘 우리가 해 본 것은 software 하나를 docker container로 만든 것이다.
+
+다른 software들도 개인적으로 해 보는 것을 추천한다
